@@ -1,47 +1,41 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+// Api link : https://opentdb.com/api.php?amount=1
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <div>
+    <h1>Quiz Game</h1>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <input type="radio" name="options" value="True">
+    <label>True</label><br>
+
+    <input type="radio" name="options" value="False">
+    <label>False</label><br>
+
+    <button class="send" type="button">Send</button>
+
+  </div>
+  
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  #app input[type=radio] {
+    margin: 12px 4px;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  #app button.send {
+    margin-top: 12px;
+    height: 40px;
+    min-width: 120px;
+    padding: 0 16px;
+    color: #fff;
+    background-color: #ce181e;
+    border: 1px solid #ce181e;
+    cursor:pointer
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
