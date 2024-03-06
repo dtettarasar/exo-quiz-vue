@@ -11,13 +11,26 @@ export default {
       correctAnswers: undefined
     }
   },
+  computed: {
+    answers(){
+      var answers = [...this.incorrectAnswers];
+      answers.push(this.correctAnswers);
+      return answers;
+    }
+  },
   created(){
-    this.axios.get('https://opentdb.com/api.php?amount=1').then((response) => {
-      this.question = response.data.results[0].question;
-      this.incorrectAnswers = response.data.results[0]['incorrect_answers'];
-      this.correctAnswers = response.data.results[0]['correct_answer'];
-      //console.log(response.data.results[0]);
-    })
+    try {
+        this.axios.get('https://opentdb.com/api.php?amount=1').then((response) => {
+        this.question = response.data.results[0].question;
+        this.incorrectAnswers = response.data.results[0]['incorrect_answers'];
+        this.correctAnswers = response.data.results[0]['correct_answer'];
+        //console.log(response.data.results[0]);
+      })
+    } catch(err) {
+
+      console.log(err)
+      this.question = "no question";
+    };
   }
 }
 
