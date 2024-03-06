@@ -26,7 +26,7 @@ export default {
 <template>
 
   <div>
-    <h1>Quiz Game</h1>
+    <h1 v-html="this.question"></h1>
 
     <input type="radio" name="options" value="True">
     <label>True</label><br>
