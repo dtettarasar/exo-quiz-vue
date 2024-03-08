@@ -14,7 +14,8 @@ export default {
   computed: {
     answers(){
       var answers = [...this.incorrectAnswers];
-      answers.push(this.correctAnswers);
+      let randomInd = this.getRandomInd();
+      answers.splice(randomInd, 0, this.correctAnswers);
       return answers;
     }
   },
@@ -24,13 +25,22 @@ export default {
         this.question = response.data.results[0].question;
         this.incorrectAnswers = response.data.results[0]['incorrect_answers'];
         this.correctAnswers = response.data.results[0]['correct_answer'];
-        //console.log(response.data.results[0]);
       })
     } catch(err) {
 
       console.log(err)
       this.question = "no question";
     };
+  },
+  methods: {
+
+    getRandomInd (){
+      // get a random index to insert the correct answer in the computed answer data
+      const index = Math.round(Math.random() * this.incorrectAnswers.length);
+      return index;
+
+    }
+
   }
 }
 
