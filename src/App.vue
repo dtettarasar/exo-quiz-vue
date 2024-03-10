@@ -9,7 +9,8 @@ export default {
       question: undefined,
       incorrectAnswers: undefined,
       correctAnswers: undefined,
-      chosenAnswer: undefined
+      chosenAnswer: undefined,
+      answerSubmitted: false
     }
   },
   computed: {
@@ -45,16 +46,20 @@ export default {
     submitForm () {
 
       if (this.chosenAnswer === undefined) {
-        
-        alert('pick an answer');
 
-      } else if (this.correctAnswers === this.chosenAnswer) {
-
-        alert('good answer');
+        alert("pick an answer");
 
       } else {
 
-        alert('wrong answer');
+        if (this.chosenAnswer === this.correctAnswers) {
+
+          alert("good answer");
+
+        } else {
+
+          alert("wrong answer");
+
+        }
 
       }
 
