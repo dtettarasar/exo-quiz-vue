@@ -19,6 +19,9 @@ export default {
       let randomInd = this.getRandomInd();
       answers.splice(randomInd, 0, this.correctAnswers);
       return answers;
+    },
+    userGotRightAnswer() {
+      return this.chosenAnswer === this.correctAnswers;
     }
   },
   created(){
@@ -47,17 +50,19 @@ export default {
 
       if (this.chosenAnswer === undefined) {
 
-        alert("pick an answer");
+        console.log("pick an answer");
 
       } else {
 
+        this.answerSubmitted = this.chosenAnswer;
+
         if (this.chosenAnswer === this.correctAnswers) {
 
-          alert("good answer");
+          console.log("good answer");
 
         } else {
 
-          alert("wrong answer");
+          console.log("wrong answer");
 
         }
 
@@ -80,13 +85,19 @@ export default {
   
       <template v-for="(answer, index) in this.answers" :key="index">
   
-        <input type="radio" name="options" :value="answer" v-model="chosenAnswer">
+        <input :disabled="this.answerSubmitted" type="radio" name="options" :value="answer" v-model="chosenAnswer">
         <label v-html="answer" ></label>
         <br>
   
       </template>
 
-      <button v-on:click="this.submitForm()" class="send" type="button">Send</button>
+      <section v-if="this.answerSubmitted" class="result" >
+        <h4 v-if="this.userGotRightAnswer">Well done, "{{ this.correctAnswers }}" is the right answer</h4>
+        <h4 v-else>Sorry but nope! "{{ this.correctAnswers }}" is the right answer</h4>
+        <button class="send" type="button">Next Question</button>
+      </section>
+
+      <button v-if="!this.answerSubmitted" v-on:click="this.submitForm()" class="send" type="button">Send</button>
 
     </template>
 
