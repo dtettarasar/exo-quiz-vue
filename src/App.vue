@@ -8,7 +8,8 @@ export default {
     return {
       question: undefined,
       incorrectAnswers: undefined,
-      correctAnswers: undefined
+      correctAnswers: undefined,
+      chosenAnswer: undefined
     }
   },
   computed: {
@@ -39,6 +40,24 @@ export default {
       const index = Math.round(Math.random() * this.incorrectAnswers.length);
       return index;
 
+    },
+
+    submitForm () {
+
+      if (this.chosenAnswer === undefined) {
+        
+        alert('pick an answer');
+
+      } else if (this.correctAnswers === this.chosenAnswer) {
+
+        alert('good answer');
+
+      } else {
+
+        alert('wrong answer');
+
+      }
+
     }
 
   }
@@ -56,16 +75,17 @@ export default {
   
       <template v-for="(answer, index) in this.answers" :key="index">
   
-        <input type="radio" name="options" :value="answer">
+        <input type="radio" name="options" :value="answer" v-model="chosenAnswer">
         <label v-html="answer" ></label>
         <br>
   
       </template>
 
+      <button v-on:click="this.submitForm()" class="send" type="button">Send</button>
+
     </template>
 
 
-    <button class="send" type="button">Send</button>
 
   </div>
   
