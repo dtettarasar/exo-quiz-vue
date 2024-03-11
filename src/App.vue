@@ -10,7 +10,9 @@ export default {
       incorrectAnswers: undefined,
       correctAnswers: undefined,
       chosenAnswer: undefined,
-      answerSubmitted: false
+      answerSubmitted: false,
+      playerScore: 0,
+      cpuScore: 0
     }
   },
   computed: {
@@ -49,10 +51,12 @@ export default {
         if (this.chosenAnswer === this.correctAnswers) {
 
           console.log("good answer");
+          this.playerScore++;
 
         } else {
 
           console.log("wrong answer");
+          this.cpuScore++;
 
         }
 
