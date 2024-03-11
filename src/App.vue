@@ -2,8 +2,14 @@
 
 // Api link : https://opentdb.com/api.php?amount=1
 
+import ScoreBoard from './components/ScoreBoard.vue'
+
 export default {
+
   name: 'App',
+  components: {
+    ScoreBoard
+  },
   data() {
     return {
       question: undefined,
@@ -93,6 +99,8 @@ export default {
 <template>
 
   <div>
+
+    <ScoreBoard />
 
     <template v-if="this.question">
       
