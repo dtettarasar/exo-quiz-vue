@@ -106,8 +106,8 @@ export default {
       </template>
 
       <section v-if="this.answerSubmitted" class="result" >
-        <h4 v-if="this.userGotRightAnswer">Well done, "{{ this.correctAnswers }}" is the right answer</h4>
-        <h4 v-else>Sorry but nope! "{{ this.correctAnswers }}" is the right answer</h4>
+        <h4 v-html="'Well done, &quot;' + this.correctAnswers + '&quot; is the right answer.'" v-if="this.userGotRightAnswer"></h4>
+        <h4 v-html="'Sorry but nope! &quot;' + this.correctAnswers + '&quot; is the right answer'" v-else></h4>
         <button @click="this.getNewQuestion()" class="send" type="button">Next Question</button>
       </section>
 
