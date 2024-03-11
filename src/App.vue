@@ -80,6 +80,7 @@ export default {
 
       this.chosenAnswer = undefined;
       this.answerSubmitted = false;
+      this.question = undefined;
 
     }
 
