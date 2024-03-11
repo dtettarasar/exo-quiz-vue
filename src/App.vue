@@ -25,17 +25,7 @@ export default {
     }
   },
   created(){
-    try {
-        this.axios.get('https://opentdb.com/api.php?amount=1').then((response) => {
-        this.question = response.data.results[0].question;
-        this.incorrectAnswers = response.data.results[0]['incorrect_answers'];
-        this.correctAnswers = response.data.results[0]['correct_answer'];
-      })
-    } catch(err) {
-
-      console.log(err)
-      this.question = "no question";
-    };
+    this.getNewQuestion();
   },
   methods: {
 
@@ -68,7 +58,27 @@ export default {
 
       }
 
+    },
+
+    getNewQuestion () {
+      try {
+        this.axios.get('https://opentdb.com/api.php?amount=1').then((response) => {
+        this.question = response.data.results[0].question;
+        this.incorrectAnswers = response.data.results[0]['incorrect_answers'];
+        this.correctAnswers = response.data.results[0]['correct_answer'];
+      })
+      } catch(err) {
+
+        console.log(err)
+        this.question = "no question";
+
+      };
+
+      this.chosenAnswer = undefined;
+      this.answerSubmitted = false;
+
     }
+
 
   }
 }
@@ -94,7 +104,7 @@ export default {
       <section v-if="this.answerSubmitted" class="result" >
         <h4 v-if="this.userGotRightAnswer">Well done, "{{ this.correctAnswers }}" is the right answer</h4>
         <h4 v-else>Sorry but nope! "{{ this.correctAnswers }}" is the right answer</h4>
-        <button class="send" type="button">Next Question</button>
+        <button @click="this.getNewQuestion()" class="send" type="button">Next Question</button>
       </section>
 
       <button v-if="!this.answerSubmitted" v-on:click="this.submitForm()" class="send" type="button">Send</button>
