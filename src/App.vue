@@ -100,7 +100,7 @@ export default {
 
   <div>
 
-    <ScoreBoard />
+    <ScoreBoard :playerScore="this.playerScore" :cpuScore="this.cpuScore" />
 
     <template v-if="this.question">
       

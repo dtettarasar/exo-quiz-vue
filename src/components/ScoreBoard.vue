@@ -1,7 +1,7 @@
 <template>
 
     <section class="score">
-        Player <span>0</span> x <span>0</span> Computer
+        Player <span>{{this.playerScore}}</span> x <span>{{this.cpuScore}}</span> Computer
     </section>
 
 </template>
@@ -9,7 +9,10 @@
 <script>
 
     export default {
-
+        props: {
+            playerScore: Number,
+            cpuScore: Number
+        }
     }
 
 </script>
